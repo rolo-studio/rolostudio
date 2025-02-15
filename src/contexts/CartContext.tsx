@@ -3,6 +3,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { CartItem, Product } from "@/types/database";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { v4 as uuidv4 } from '@supabase/supabase-js/dist/main/lib/helpers';
 
 interface CartContextType {
   cartItems: CartItem[];
@@ -17,33 +18,33 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [sessionId, setSessionId] = useState<string>('');
   const { toast } = useToast();
 
   useEffect(() => {
-    // Load cart items when the auth state changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(() => {
-      fetchCartItems();
-    });
-
-    fetchCartItems();
-
-    return () => {
-      subscription.unsubscribe();
-    };
+    // Initialize or retrieve session ID from localStorage
+    const storedSessionId = localStorage.getItem('cartSessionId');
+    if (storedSessionId) {
+      setSessionId(storedSessionId);
+    } else {
+      const newSessionId = uuidv4();
+      localStorage.setItem('cartSessionId', newSessionId);
+      setSessionId(newSessionId);
+    }
   }, []);
 
-  const fetchCartItems = async () => {
-    const { data: session } = await supabase.auth.getSession();
-    if (!session?.session?.user) {
-      setCartItems([]);
-      setIsLoading(false);
-      return;
+  useEffect(() => {
+    if (sessionId) {
+      fetchCartItems();
     }
+  }, [sessionId]);
 
+  const fetchCartItems = async () => {
     try {
       const { data, error } = await supabase
         .from('cart_items')
-        .select('*');
+        .select('*')
+        .eq('session_id', sessionId);
 
       if (error) throw error;
       
@@ -61,16 +62,6 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   };
 
   const addToCart = async (product: Product) => {
-    const { data: session } = await supabase.auth.getSession();
-    if (!session?.session?.user) {
-      toast({
-        title: "Please log in",
-        description: "You need to be logged in to add items to your cart",
-        variant: "destructive",
-      });
-      return;
-    }
-
     try {
       // Check if product is already in cart
       const existingItem = cartItems.find(item => item.product_id === product.id);
@@ -89,7 +80,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
           .from('cart_items')
           .insert({
             product_id: product.id,
-            user_id: session.session.user.id,
+            session_id: sessionId,
             quantity: 1
           });
 
@@ -97,6 +88,10 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       }
 
       await fetchCartItems();
+      toast({
+        title: "Product toegevoegd",
+        description: "Het product is toegevoegd aan je winkelwagen",
+      });
     } catch (error) {
       console.error('Error adding to cart:', error);
       toast({
@@ -112,7 +107,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       const { error } = await supabase
         .from('cart_items')
         .delete()
-        .eq('id', itemId);
+        .eq('id', itemId)
+        .eq('session_id', sessionId);
 
       if (error) throw error;
 
@@ -137,7 +133,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       const { error } = await supabase
         .from('cart_items')
         .update({ quantity })
-        .eq('id', itemId);
+        .eq('id', itemId)
+        .eq('session_id', sessionId);
 
       if (error) throw error;
 

@@ -55,7 +55,11 @@ const Header = () => {
           </nav>
         </div>
         <div className="flex items-center gap-4">
-          <Button variant="ghost" size="icon">
+          <Button 
+            variant="ghost" 
+            size="icon"
+            onClick={() => navigate('/cart')}
+          >
             <ShoppingCart className="h-6 w-6" />
           </Button>
         </div>
