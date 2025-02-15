@@ -1,5 +1,5 @@
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { PencilIcon, PlusIcon, Trash2Icon } from "lucide-react";
@@ -20,43 +20,53 @@ import { Product } from "@/types/database";
 const Admin = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
-  const { user } = useAuth();
+  const { user, isLoading: authLoading } = useAuth();
+  const [isCheckingAdmin, setIsCheckingAdmin] = useState(true);
 
   // Check if user is admin
   useEffect(() => {
     const checkAdminStatus = async () => {
-      if (!user?.email) {
-        navigate("/auth");
-        return;
-      }
+      try {
+        if (authLoading) return;
+        
+        if (!user?.email) {
+          navigate("/auth");
+          return;
+        }
 
-      const { data: adminData, error } = await supabase
-        .from("admin_users")
-        .select("id")
-        .eq("email", user.email)
-        .maybeSingle();
+        const { data: adminData, error } = await supabase
+          .from("admin_users")
+          .select("id")
+          .eq("email", user.email)
+          .maybeSingle();
 
-      if (error && error.code !== "PGRST116") {
-        console.error("Error checking admin status:", error);
+        if (error && error.code !== "PGRST116") {
+          console.error("Error checking admin status:", error);
+          navigate("/");
+          return;
+        }
+
+        if (!adminData) {
+          toast({
+            title: "Geen toegang",
+            description: "Je hebt geen admin rechten.",
+            variant: "destructive",
+          });
+          navigate("/");
+        }
+      } catch (error) {
+        console.error("Error in checkAdminStatus:", error);
         navigate("/");
-        return;
-      }
-
-      if (!adminData) {
-        toast({
-          title: "Geen toegang",
-          description: "Je hebt geen admin rechten.",
-          variant: "destructive",
-        });
-        navigate("/");
+      } finally {
+        setIsCheckingAdmin(false);
       }
     };
 
     checkAdminStatus();
-  }, [user, navigate, toast]);
+  }, [user, authLoading, navigate, toast]);
 
   // Fetch products
-  const { data: products, isLoading } = useQuery({
+  const { data: products, isLoading: productsLoading } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
       const { data, error } = await supabase
@@ -67,6 +77,7 @@ const Admin = () => {
       if (error) throw error;
       return data as Product[];
     },
+    enabled: !isCheckingAdmin, // Only fetch products after admin check is complete
   });
 
   const handleDelete = async (id: string) => {
@@ -88,10 +99,18 @@ const Admin = () => {
     }
   };
 
-  if (isLoading) {
+  if (authLoading || isCheckingAdmin) {
     return (
       <div className="container py-8">
         <p>Laden...</p>
+      </div>
+    );
+  }
+
+  if (productsLoading) {
+    return (
+      <div className="container py-8">
+        <p>Producten laden...</p>
       </div>
     );
   }
