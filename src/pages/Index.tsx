@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
@@ -37,8 +36,9 @@ const Index = () => {
       
       {/* Hero Section with golden details */}
       <section className="relative flex min-h-[60vh] items-center justify-center bg-warmGray-50 overflow-hidden">
-        {/* Golden streamers detail */}
+        {/* Golden streamers and dots detail */}
         <div className="absolute w-full h-full overflow-hidden pointer-events-none">
+          {/* Existing streamers */}
           <div 
             className="absolute top-1/4 left-0 w-full h-[2px] transform -rotate-6 opacity-20"
             style={{
@@ -77,6 +77,49 @@ const Index = () => {
               background: 'linear-gradient(90deg, transparent 0%, #DAA520 50%, transparent 100%)',
               transform: 'rotate(-5deg) translateY(15px) scale(0.97)',
               borderRadius: '100%'
+            }}
+          />
+
+          {/* Golden dots/splatters */}
+          <div 
+            className="absolute top-1/4 left-1/4 w-2 h-2 opacity-20"
+            style={{
+              background: '#DAA520',
+              borderRadius: '50%',
+              filter: 'blur(1px)'
+            }}
+          />
+          <div 
+            className="absolute top-1/3 right-1/3 w-3 h-3 opacity-15"
+            style={{
+              background: '#FFD700',
+              borderRadius: '50%',
+              filter: 'blur(2px)'
+            }}
+          />
+          <div 
+            className="absolute top-2/3 left-1/3 w-4 h-4 opacity-10"
+            style={{
+              background: '#DAA520',
+              borderRadius: '50%',
+              filter: 'blur(3px)'
+            }}
+          />
+          <div 
+            className="absolute bottom-1/4 right-1/4 w-2 h-2 opacity-25"
+            style={{
+              background: '#FFD700',
+              borderRadius: '50%',
+              filter: 'blur(1px)'
+            }}
+          />
+          <div 
+            className="absolute top-1/2 right-1/4 w-3 h-3 opacity-15"
+            style={{
+              background: '#DAA520',
+              borderRadius: '50%',
+              filter: 'blur(2px)',
+              transform: 'rotate(45deg) scale(1.2)'
             }}
           />
         </div>
