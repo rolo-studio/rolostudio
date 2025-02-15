@@ -60,12 +60,30 @@ const Auth = () => {
           description: "Controleer je email om je account te verifiëren.",
         });
       } else {
-        const { error } = await supabase.auth.signInWithPassword({
+        const { error, data } = await supabase.auth.signInWithPassword({
           email,
           password,
         });
         if (error) throw error;
-        navigate("/");
+
+        // Check if the user is an admin after successful login
+        const { data: adminData, error: adminError } = await supabase
+          .from('admin_users')
+          .select('id')
+          .eq('email', email)
+          .maybeSingle();
+
+        if (adminError && adminError.code !== 'PGRST116') {
+          console.error('Error checking admin status:', adminError);
+          navigate("/");
+          return;
+        }
+
+        if (adminData) {
+          navigate("/admin");
+        } else {
+          navigate("/");
+        }
       }
     } catch (error: any) {
       toast({
