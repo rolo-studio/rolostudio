@@ -35,9 +35,25 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Header />
       
-      {/* Hero Section */}
-      <section className="relative flex min-h-[60vh] items-center justify-center bg-warmGray-50">
-        <div className="container text-center">
+      {/* Hero Section with golden details */}
+      <section className="relative flex min-h-[60vh] items-center justify-center bg-warmGray-50 overflow-hidden">
+        {/* Golden streamer detail */}
+        <div className="absolute w-full h-full overflow-hidden pointer-events-none">
+          <div 
+            className="absolute top-1/4 left-0 w-full h-[2px] transform -rotate-6 opacity-20"
+            style={{
+              background: 'linear-gradient(90deg, transparent 0%, #DAA520 50%, transparent 100%)',
+            }}
+          />
+          <div 
+            className="absolute top-2/3 left-0 w-full h-[1px] transform rotate-3 opacity-10"
+            style={{
+              background: 'linear-gradient(90deg, transparent 0%, #FFD700 50%, transparent 100%)',
+            }}
+          />
+        </div>
+        
+        <div className="container text-center relative z-10">
           <h1 className="animate-fade-in font-playfair text-4xl font-medium text-foreground sm:text-5xl md:text-6xl">
             Handgemaakte Schatten
           </h1>
