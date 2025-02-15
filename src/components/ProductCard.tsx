@@ -4,17 +4,18 @@ import { Heart } from "lucide-react";
 import { Button } from "./ui/button";
 import { Product } from "@/types/database";
 import { useToast } from "@/hooks/use-toast";
+import { useCart } from "@/contexts/CartContext";
 
 interface ProductCardProps {
   product: Product;
-  onAddToCart?: (product: Product) => void;
 }
 
-const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
+const ProductCard = ({ product }: ProductCardProps) => {
   const { toast } = useToast();
+  const { addToCart } = useCart();
   const [isHovering, setIsHovering] = useState(false);
 
-  const handleAddToCart = () => {
+  const handleAddToCart = async () => {
     if (product.stock <= 0) {
       toast({
         title: "Product niet beschikbaar",
@@ -24,11 +25,7 @@ const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
       return;
     }
 
-    onAddToCart?.(product);
-    toast({
-      title: "Product toegevoegd",
-      description: `${product.title} is toegevoegd aan je winkelwagen.`,
-    });
+    await addToCart(product);
   };
 
   return (
