@@ -41,12 +41,12 @@ export default {
           300: "#F9A8D4",
           400: "#F472B6",
         },
-        gold: {
-          50: "#FFFBEB",
-          100: "#FEF3C7",
-          200: "#FDE68A",
-          300: "#FCD34D",
-          400: "#FBBF24",
+        mint: {
+          50: "#F2FCE2",
+          100: "#E4F9D4",
+          200: "#C7F2B2",
+          300: "#A9EC8F",
+          400: "#8BE66D",
         },
         primary: {
           DEFAULT: "hsl(var(--primary))",
@@ -110,3 +110,4 @@ export default {
   },
   plugins: [require("tailwindcss-animate")],
 } satisfies Config;
+
