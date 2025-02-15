@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
@@ -37,9 +38,7 @@ const Index = () => {
       {/* Hero Section met luxe golven en gouden details */}
       <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden"
         style={{
-          background: `
-            linear-gradient(135deg, rgba(255,245,242,1) 0%, rgba(254,235,228,1) 50%, rgba(255,228,218,1) 100%)
-          `
+          background: 'linear-gradient(135deg, rgba(255,245,242,1) 0%, rgba(254,235,228,1) 50%, rgba(255,228,218,1) 100%)'
         }}
       >
         {/* Zachte golven overlay */}
@@ -47,49 +46,70 @@ const Index = () => {
           className="absolute inset-0 opacity-30"
           style={{
             background: `
-              linear-gradient(45deg, rgba(255,235,228,0.8) 0%, rgba(255,228,218,0.8) 100%),
               radial-gradient(circle at 20% 30%, rgba(255,242,238,0.6) 0%, transparent 70%),
               radial-gradient(circle at 80% 70%, rgba(255,238,232,0.6) 0%, transparent 70%)
             `
           }}
         />
 
-        {/* Gouden lijnen */}
+        {/* Gouden lijnen container */}
         <div className="absolute inset-0 overflow-hidden">
-          {/* Lange golvende lijn 1 */}
+          {/* Bovenste lange golvende lijn */}
           <div 
-            className="absolute w-full h-[1px] opacity-40"
+            className="absolute w-[120%] h-[1px] opacity-40 left-[-10%]"
             style={{
               background: 'linear-gradient(90deg, transparent 0%, rgba(218,165,32,0.6) 20%, rgba(255,215,0,0.6) 50%, rgba(218,165,32,0.6) 80%, transparent 100%)',
-              top: '30%',
-              transform: 'rotate(-5deg) scale(1.5)',
+              top: '25%',
+              transform: 'rotate(-8deg) translateY(-50px)',
               filter: 'blur(0.5px)'
             }}
           />
 
-          {/* Lange golvende lijn 2 */}
+          {/* Tweede golvende lijn */}
           <div 
-            className="absolute w-full h-[1px] opacity-30"
+            className="absolute w-[120%] h-[1px] opacity-35 left-[-10%]"
             style={{
               background: 'linear-gradient(90deg, transparent 0%, rgba(218,165,32,0.5) 20%, rgba(255,215,0,0.5) 50%, rgba(218,165,32,0.5) 80%, transparent 100%)',
+              top: '35%',
+              transform: 'rotate(4deg) translateY(20px)',
+              filter: 'blur(0.5px)'
+            }}
+          />
+
+          {/* Derde golvende lijn */}
+          <div 
+            className="absolute w-[120%] h-[1px] opacity-40 left-[-10%]"
+            style={{
+              background: 'linear-gradient(90deg, transparent 0%, rgba(218,165,32,0.6) 20%, rgba(255,215,0,0.6) 50%, rgba(218,165,32,0.6) 80%, transparent 100%)',
               top: '45%',
-              transform: 'rotate(3deg) scale(1.5)',
+              transform: 'rotate(-6deg) translateY(40px)',
               filter: 'blur(0.5px)'
             }}
           />
 
-          {/* Lange golvende lijn 3 */}
+          {/* Vierde golvende lijn */}
           <div 
-            className="absolute w-full h-[1px] opacity-35"
+            className="absolute w-[120%] h-[1px] opacity-35 left-[-10%]"
             style={{
               background: 'linear-gradient(90deg, transparent 0%, rgba(218,165,32,0.5) 20%, rgba(255,215,0,0.5) 50%, rgba(218,165,32,0.5) 80%, transparent 100%)',
-              top: '60%',
-              transform: 'rotate(-2deg) scale(1.5)',
+              top: '55%',
+              transform: 'rotate(5deg) translateY(-10px)',
               filter: 'blur(0.5px)'
             }}
           />
 
-          {/* Subtiele gouden schaduwen */}
+          {/* Vijfde golvende lijn */}
+          <div 
+            className="absolute w-[120%] h-[1px] opacity-40 left-[-10%]"
+            style={{
+              background: 'linear-gradient(90deg, transparent 0%, rgba(218,165,32,0.6) 20%, rgba(255,215,0,0.6) 50%, rgba(218,165,32,0.6) 80%, transparent 100%)',
+              top: '65%',
+              transform: 'rotate(-3deg) translateY(30px)',
+              filter: 'blur(0.5px)'
+            }}
+          />
+
+          {/* Subtiele gouden gloed */}
           <div 
             className="absolute inset-0 opacity-10"
             style={{
