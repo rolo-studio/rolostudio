@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
@@ -34,8 +35,30 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Header />
       
-      {/* Hero Section with golden details */}
-      <section className="relative flex min-h-[60vh] items-center justify-center bg-warmGray-50 overflow-hidden">
+      {/* Hero Section with marble and golden details */}
+      <section className="relative flex min-h-[60vh] items-center justify-center overflow-hidden"
+        style={{
+          background: `
+            linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(240,240,240,0.85) 50%, rgba(230,230,230,0.9) 100%),
+            linear-gradient(45deg, rgba(218,165,32,0.1) 0%, rgba(255,215,0,0.1) 100%)
+          `,
+          boxShadow: 'inset 0 0 100px rgba(218,165,32,0.1)'
+        }}
+      >
+        {/* Marble texture overlay */}
+        <div 
+          className="absolute inset-0 opacity-30"
+          style={{
+            backgroundImage: `
+              radial-gradient(circle at 20% 30%, rgba(218,165,32,0.05) 0%, transparent 50%),
+              radial-gradient(circle at 70% 60%, rgba(218,165,32,0.05) 0%, transparent 50%),
+              radial-gradient(circle at 40% 80%, rgba(255,215,0,0.05) 0%, transparent 40%),
+              radial-gradient(circle at 80% 20%, rgba(255,215,0,0.05) 0%, transparent 40%)
+            `,
+            mixBlendMode: 'overlay'
+          }}
+        />
+
         {/* Golden streamers and dots detail */}
         <div className="absolute w-full h-full overflow-hidden pointer-events-none">
           {/* Existing streamers */}
