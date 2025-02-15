@@ -1,39 +1,35 @@
 
+import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import ProductCard from "@/components/ProductCard";
-
-const featuredProducts = [
-  {
-    id: 1,
-    title: "Gouden Ketting",
-    price: 49.99,
-    category: "Sieraden",
-    image: "/placeholder.svg",
-  },
-  {
-    id: 2,
-    title: "Zilveren Armband",
-    price: 29.99,
-    category: "Sieraden",
-    image: "/placeholder.svg",
-  },
-  {
-    id: 3,
-    title: "Marmer Telefoonhoesje",
-    price: 24.99,
-    category: "Telefoonhoesjes",
-    image: "/placeholder.svg",
-  },
-  {
-    id: 4,
-    title: "Bloemen Telefoonhoesje",
-    price: 19.99,
-    category: "Telefoonhoesjes",
-    image: "/placeholder.svg",
-  },
-];
+import { Product } from "@/types/database";
+import { supabase } from "@/integrations/supabase/client";
 
 const Index = () => {
+  const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('products')
+          .select('*')
+          .limit(4);
+        
+        if (error) throw error;
+        
+        setFeaturedProducts(data);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -64,11 +60,29 @@ const Index = () => {
           <h2 className="text-center font-playfair text-3xl font-medium">
             Uitgelichte Producten
           </h2>
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {featuredProducts.map((product) => (
-              <ProductCard key={product.id} {...product} />
-            ))}
-          </div>
+          {isLoading ? (
+            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {[...Array(4)].map((_, i) => (
+                <div key={i} className="animate-pulse">
+                  <div className="aspect-square bg-gray-200" />
+                  <div className="p-4">
+                    <div className="h-4 w-24 bg-gray-200" />
+                    <div className="mt-2 h-6 w-48 bg-gray-200" />
+                    <div className="mt-2 h-4 w-16 bg-gray-200" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {featuredProducts.map((product) => (
+                <ProductCard 
+                  key={product.id} 
+                  product={product}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </section>
 

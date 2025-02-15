@@ -1,37 +1,84 @@
 
+import { useState } from "react";
 import { Heart } from "lucide-react";
 import { Button } from "./ui/button";
+import { Product } from "@/types/database";
+import { useToast } from "@/hooks/use-toast";
 
 interface ProductCardProps {
-  image: string;
-  title: string;
-  price: number;
-  category: string;
+  product: Product;
+  onAddToCart?: (product: Product) => void;
 }
 
-const ProductCard = ({ image, title, price, category }: ProductCardProps) => {
+const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
+  const { toast } = useToast();
+  const [isHovering, setIsHovering] = useState(false);
+
+  const handleAddToCart = () => {
+    if (product.stock <= 0) {
+      toast({
+        title: "Product niet beschikbaar",
+        description: "Dit product is momenteel niet op voorraad.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    onAddToCart?.(product);
+    toast({
+      title: "Product toegevoegd",
+      description: `${product.title} is toegevoegd aan je winkelwagen.`,
+    });
+  };
+
   return (
-    <div className="product-card group">
+    <div 
+      className="product-card group"
+      onMouseEnter={() => setIsHovering(true)}
+      onMouseLeave={() => setIsHovering(false)}
+    >
       <div className="relative aspect-square overflow-hidden">
         <img
-          src={image}
-          alt={title}
+          src={product.image_url || "/placeholder.svg"}
+          alt={product.title}
           className="h-full w-full object-cover"
           loading="lazy"
         />
         <Button
           variant="ghost"
           size="icon"
-          className="absolute right-2 top-2 bg-white/80 opacity-0 transition-opacity group-hover:opacity-100"
+          className={`absolute right-2 top-2 bg-white/80 transition-opacity ${
+            isHovering ? "opacity-100" : "opacity-0"
+          }`}
         >
           <Heart className="h-5 w-5" />
         </Button>
+        {product.stock <= 0 && (
+          <div className="absolute inset-0 flex items-center justify-center bg-black/50">
+            <span className="rounded-full bg-white px-4 py-2 text-sm font-medium">
+              Uitverkocht
+            </span>
+          </div>
+        )}
       </div>
       <div className="p-4">
-        <p className="text-sm text-muted-foreground">{category}</p>
-        <h3 className="mt-1 font-medium">{title}</h3>
-        <p className="mt-1 font-semibold">€{price.toFixed(2)}</p>
-        <Button className="mt-4 w-full button-primary">Toevoegen aan winkelwagen</Button>
+        <p className="text-sm text-muted-foreground">
+          {product.category === 'sieraden' ? 'Sieraden' : 'Telefoonhoesjes'}
+        </p>
+        <h3 className="mt-1 font-medium">{product.title}</h3>
+        {product.description && (
+          <p className="mt-1 text-sm text-muted-foreground line-clamp-2">
+            {product.description}
+          </p>
+        )}
+        <p className="mt-1 font-semibold">€{product.price.toFixed(2)}</p>
+        <Button 
+          className="mt-4 w-full button-primary"
+          onClick={handleAddToCart}
+          disabled={product.stock <= 0}
+        >
+          {product.stock > 0 ? "Toevoegen aan winkelwagen" : "Uitverkocht"}
+        </Button>
       </div>
     </div>
   );
