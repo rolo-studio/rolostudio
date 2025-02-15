@@ -3,7 +3,7 @@ import { ShoppingCart, Menu } from "lucide-react";
 import { Button } from "./ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,37 +21,53 @@ const Header = () => {
             </SheetTrigger>
             <SheetContent side="left">
               <nav className="flex flex-col gap-4">
-                <a href="#" className="nav-link" onClick={() => setIsOpen(false)}>
+                <Link
+                  to="/category/sieraden"
+                  className="nav-link"
+                  onClick={() => setIsOpen(false)}
+                >
                   Sieraden
-                </a>
-                <a href="#" className="nav-link" onClick={() => setIsOpen(false)}>
+                </Link>
+                <Link
+                  to="/category/telefoonhoesjes"
+                  className="nav-link"
+                  onClick={() => setIsOpen(false)}
+                >
                   Telefoonhoesjes
-                </a>
-                <a href="#" className="nav-link" onClick={() => setIsOpen(false)}>
+                </Link>
+                <Link
+                  to="/about"
+                  className="nav-link"
+                  onClick={() => setIsOpen(false)}
+                >
                   Over ons
-                </a>
-                <a href="#" className="nav-link" onClick={() => setIsOpen(false)}>
+                </Link>
+                <Link
+                  to="/contact"
+                  className="nav-link"
+                  onClick={() => setIsOpen(false)}
+                >
                   Contact
-                </a>
+                </Link>
               </nav>
             </SheetContent>
           </Sheet>
-          <a href="/" className="text-xl font-semibold">
+          <Link to="/" className="text-xl font-semibold">
             <h1 className="font-playfair text-2xl">Ro & Lo Studio</h1>
-          </a>
+          </Link>
           <nav className="hidden md:flex md:gap-6">
-            <a href="#" className="nav-link">
+            <Link to="/category/sieraden" className="nav-link">
               Sieraden
-            </a>
-            <a href="#" className="nav-link">
+            </Link>
+            <Link to="/category/telefoonhoesjes" className="nav-link">
               Telefoonhoesjes
-            </a>
-            <a href="#" className="nav-link">
+            </Link>
+            <Link to="/about" className="nav-link">
               Over ons
-            </a>
-            <a href="#" className="nav-link">
+            </Link>
+            <Link to="/contact" className="nav-link">
               Contact
-            </a>
+            </Link>
           </nav>
         </div>
         <div className="flex items-center gap-4">
@@ -69,3 +85,4 @@ const Header = () => {
 };
 
 export default Header;
+
