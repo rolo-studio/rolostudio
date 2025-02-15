@@ -8,6 +8,12 @@ import { Button } from "@/components/ui/button";
 import { Product } from "@/types/database";
 import { supabase } from "@/integrations/supabase/client";
 
+type ValidCategory = 'sieraden' | 'telefoonhoesjes';
+
+const isValidCategory = (category: string | undefined): category is ValidCategory => {
+  return category === 'sieraden' || category === 'telefoonhoesjes';
+};
+
 const CategoryProducts = () => {
   const { category } = useParams();
   const navigate = useNavigate();
@@ -17,7 +23,7 @@ const CategoryProducts = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        if (!category || !['sieraden', 'telefoonhoesjes'].includes(category)) {
+        if (!isValidCategory(category)) {
           navigate('/');
           return;
         }
