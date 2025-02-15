@@ -15,7 +15,7 @@ const About = () => {
             <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
               <Users className="h-6 w-6 text-primary" />
             </div>
-            <h2 className="mb-2 text-xl font-semibold">Ons Team</h2>
+            <h2 className="mb-2 text-xl font-semibold">Over Ons</h2>
             <p className="text-muted-foreground">
               Wij zijn Rose & Loïze, buurmeisjes en we kennen elkaar al sinds onze geboorte. Wij houden veel van creatieve dingen.
             </p>
