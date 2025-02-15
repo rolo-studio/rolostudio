@@ -70,7 +70,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
         )}
         <p className="mt-1 font-semibold">€{product.price.toFixed(2)}</p>
         <Button 
-          className="mt-4 w-full button-primary"
+          className="mt-6 w-full rounded-lg bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 disabled:bg-muted"
           onClick={handleAddToCart}
           disabled={product.stock <= 0}
         >
