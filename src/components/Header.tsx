@@ -1,24 +1,13 @@
 
-import { ShoppingCart, Menu, LogOut } from "lucide-react";
+import { ShoppingCart, Menu } from "lucide-react";
 import { Button } from "./ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import { useState } from "react";
-import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { Avatar, AvatarFallback } from "./ui/avatar";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { user, signOut } = useAuth();
   const navigate = useNavigate();
-
-  const handleAuthClick = () => {
-    if (user) {
-      signOut();
-    } else {
-      navigate("/auth");
-    }
-  };
 
   return (
     <header className="sticky top-0 z-50 border-b bg-background/80 backdrop-blur-sm">
@@ -69,15 +58,6 @@ const Header = () => {
           <Button variant="ghost" size="icon">
             <ShoppingCart className="h-6 w-6" />
           </Button>
-          {user ? (
-            <Button variant="ghost" size="icon" onClick={handleAuthClick}>
-              <LogOut className="h-6 w-6" />
-            </Button>
-          ) : (
-            <Button variant="ghost" onClick={handleAuthClick}>
-              Inloggen
-            </Button>
-          )}
         </div>
       </div>
     </header>
