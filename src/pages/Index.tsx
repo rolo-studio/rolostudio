@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
@@ -35,122 +34,75 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Header />
       
-      {/* Hero Section met organische vormen en gouden details */}
-      <section className="relative flex min-h-[60vh] items-center justify-center overflow-hidden"
+      {/* Hero Section met luxe golven en gouden details */}
+      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden"
         style={{
           background: `
-            linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(250,248,246,0.9) 50%, rgba(248,246,242,0.95) 100%),
-            linear-gradient(45deg, rgba(218,165,32,0.08) 0%, rgba(255,215,0,0.08) 100%)
-          `,
-          boxShadow: 'inset 0 0 120px rgba(218,165,32,0.08)'
+            linear-gradient(135deg, rgba(255,245,242,1) 0%, rgba(254,235,228,1) 50%, rgba(255,228,218,1) 100%)
+          `
         }}
       >
-        {/* Marmer textuur overlay */}
+        {/* Zachte golven overlay */}
         <div 
-          className="absolute inset-0 opacity-20"
+          className="absolute inset-0 opacity-30"
           style={{
-            backgroundImage: `
-              radial-gradient(circle at 30% 20%, rgba(218,165,32,0.06) 0%, transparent 60%),
-              radial-gradient(circle at 70% 60%, rgba(218,165,32,0.05) 0%, transparent 55%),
-              radial-gradient(circle at 20% 80%, rgba(255,215,0,0.06) 0%, transparent 50%),
-              radial-gradient(circle at 90% 30%, rgba(255,215,0,0.05) 0%, transparent 45%)
-            `,
-            mixBlendMode: 'overlay'
+            background: `
+              linear-gradient(45deg, rgba(255,235,228,0.8) 0%, rgba(255,228,218,0.8) 100%),
+              radial-gradient(circle at 20% 30%, rgba(255,242,238,0.6) 0%, transparent 70%),
+              radial-gradient(circle at 80% 70%, rgba(255,238,232,0.6) 0%, transparent 70%)
+            `
           }}
         />
 
-        {/* Gekronkelde gouden lijnen en details */}
-        <div className="absolute w-full h-full overflow-hidden pointer-events-none">
-          {/* Organische curve 1 */}
+        {/* Gouden lijnen */}
+        <div className="absolute inset-0 overflow-hidden">
+          {/* Lange golvende lijn 1 */}
           <div 
-            className="absolute top-1/4 left-0 w-full h-[2px] opacity-20"
+            className="absolute w-full h-[1px] opacity-40"
             style={{
-              background: 'linear-gradient(90deg, transparent 0%, #DAA520 50%, transparent 100%)',
-              transform: 'rotate(-5deg) scale(1.2)',
-              borderRadius: '50%',
-              filter: 'blur(0.5px)',
-              clipPath: 'path("M0,50 Q25,0 50,50 T100,50")'
-            }}
-          />
-          
-          {/* Organische curve 2 */}
-          <div 
-            className="absolute top-1/3 left-0 w-full h-[1.5px] opacity-15"
-            style={{
-              background: 'linear-gradient(90deg, transparent 0%, #FFD700 50%, transparent 100%)',
-              transform: 'rotate(8deg) scale(1.1)',
-              borderRadius: '50%',
-              filter: 'blur(0.7px)',
-              clipPath: 'path("M0,50 Q40,100 60,30 T100,50")'
+              background: 'linear-gradient(90deg, transparent 0%, rgba(218,165,32,0.6) 20%, rgba(255,215,0,0.6) 50%, rgba(218,165,32,0.6) 80%, transparent 100%)',
+              top: '30%',
+              transform: 'rotate(-5deg) scale(1.5)',
+              filter: 'blur(0.5px)'
             }}
           />
 
-          {/* Organische curve 3 */}
+          {/* Lange golvende lijn 2 */}
           <div 
-            className="absolute top-1/2 left-0 w-full h-[2px] opacity-20"
+            className="absolute w-full h-[1px] opacity-30"
             style={{
-              background: 'linear-gradient(90deg, transparent 0%, #DAA520 50%, transparent 100%)',
-              transform: 'rotate(-3deg) scale(0.9)',
-              borderRadius: '50%',
-              filter: 'blur(0.5px)',
-              clipPath: 'path("M0,30 Q60,80 30,40 T100,30")'
+              background: 'linear-gradient(90deg, transparent 0%, rgba(218,165,32,0.5) 20%, rgba(255,215,0,0.5) 50%, rgba(218,165,32,0.5) 80%, transparent 100%)',
+              top: '45%',
+              transform: 'rotate(3deg) scale(1.5)',
+              filter: 'blur(0.5px)'
             }}
           />
 
-          {/* Organische curve 4 */}
+          {/* Lange golvende lijn 3 */}
           <div 
-            className="absolute top-2/3 left-0 w-full h-[1px] opacity-25"
+            className="absolute w-full h-[1px] opacity-35"
             style={{
-              background: 'linear-gradient(90deg, transparent 0%, #FFD700 50%, transparent 100%)',
-              transform: 'rotate(6deg) scale(1.3)',
-              borderRadius: '50%',
-              filter: 'blur(0.3px)',
-              clipPath: 'path("M0,50 Q30,20 70,80 T100,50")'
+              background: 'linear-gradient(90deg, transparent 0%, rgba(218,165,32,0.5) 20%, rgba(255,215,0,0.5) 50%, rgba(218,165,32,0.5) 80%, transparent 100%)',
+              top: '60%',
+              transform: 'rotate(-2deg) scale(1.5)',
+              filter: 'blur(0.5px)'
             }}
           />
 
-          {/* Organische curve 5 */}
+          {/* Subtiele gouden schaduwen */}
           <div 
-            className="absolute bottom-1/4 left-0 w-full h-[1.5px] opacity-15"
+            className="absolute inset-0 opacity-10"
             style={{
-              background: 'linear-gradient(90deg, transparent 0%, #DAA520 50%, transparent 100%)',
-              transform: 'rotate(-7deg) scale(1.1)',
-              borderRadius: '50%',
-              filter: 'blur(0.6px)',
-              clipPath: 'path("M0,60 Q45,20 55,70 T100,60")'
-            }}
-          />
-
-          {/* Gouden accenten */}
-          <div 
-            className="absolute top-1/3 left-1/4 w-3 h-3 opacity-20"
-            style={{
-              background: '#DAA520',
-              borderRadius: '50%',
-              filter: 'blur(2px)',
-              transform: 'rotate(45deg) scale(0.8)'
-            }}
-          />
-          <div 
-            className="absolute top-2/3 right-1/3 w-4 h-4 opacity-15"
-            style={{
-              background: '#FFD700',
-              borderRadius: '50%',
-              filter: 'blur(3px)',
-              transform: 'rotate(-30deg) scale(1.2)'
-            }}
-          />
-          <div 
-            className="absolute bottom-1/4 left-2/3 w-2 h-2 opacity-25"
-            style={{
-              background: '#DAA520',
-              borderRadius: '50%',
-              filter: 'blur(1.5px)',
-              transform: 'rotate(15deg) scale(0.9)'
+              background: `
+                radial-gradient(circle at 30% 20%, rgba(218,165,32,0.4) 0%, transparent 60%),
+                radial-gradient(circle at 70% 60%, rgba(255,215,0,0.4) 0%, transparent 60%),
+                radial-gradient(circle at 20% 80%, rgba(218,165,32,0.4) 0%, transparent 50%)
+              `,
+              filter: 'blur(40px)'
             }}
           />
         </div>
-        
+
         <div className="container text-center relative z-10">
           <h1 className="animate-fade-in font-playfair text-4xl font-medium text-foreground sm:text-5xl md:text-6xl">
             Handgemaakte Schatten
