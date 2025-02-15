@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
@@ -65,7 +64,6 @@ const Admin = () => {
     checkAdminStatus();
   }, [user, authLoading, navigate, toast]);
 
-  // Fetch products
   const { data: products, isLoading: productsLoading } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
@@ -121,7 +119,7 @@ const Admin = () => {
         <h1 className="font-playfair text-2xl font-semibold">
           Producten beheren
         </h1>
-        <Button>
+        <Button onClick={() => navigate("/admin/products/new")}>
           <PlusIcon className="mr-2 h-4 w-4" />
           Nieuw product
         </Button>
@@ -151,7 +149,11 @@ const Admin = () => {
                 <TableCell>{product.stock}</TableCell>
                 <TableCell>
                   <div className="flex space-x-2">
-                    <Button variant="ghost" size="icon">
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={() => navigate(`/admin/products/${product.id}/edit`)}
+                    >
                       <PencilIcon className="h-4 w-4" />
                     </Button>
                     <Button
