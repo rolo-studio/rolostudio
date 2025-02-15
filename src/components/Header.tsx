@@ -42,13 +42,6 @@ const Header = () => {
                 >
                   Over ons
                 </Link>
-                <Link
-                  to="/contact"
-                  className="nav-link"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Contact
-                </Link>
               </nav>
             </SheetContent>
           </Sheet>
@@ -64,9 +57,6 @@ const Header = () => {
             </Link>
             <Link to="/about" className="nav-link">
               Over ons
-            </Link>
-            <Link to="/contact" className="nav-link">
-              Contact
             </Link>
           </nav>
         </div>
@@ -85,4 +75,3 @@ const Header = () => {
 };
 
 export default Header;
-

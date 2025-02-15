@@ -9,6 +9,7 @@ import Admin from "@/pages/Admin";
 import CreateProduct from "@/pages/CreateProduct";
 import EditProduct from "@/pages/EditProduct";
 import CategoryProducts from "@/pages/CategoryProducts";
+import About from "@/pages/About";
 import NotFound from "@/pages/NotFound";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { CartProvider } from "@/contexts/CartContext";
@@ -31,6 +32,7 @@ function App() {
               <Route path="/admin/products/new" element={<CreateProduct />} />
               <Route path="/admin/products/:id/edit" element={<EditProduct />} />
               <Route path="/category/:category" element={<CategoryProducts />} />
+              <Route path="/about" element={<About />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
             <Toaster />
