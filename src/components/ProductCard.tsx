@@ -58,19 +58,19 @@ const ProductCard = ({ product }: ProductCardProps) => {
           </div>
         )}
       </div>
-      <div className="p-4">
+      <div className="p-6">
         <p className="text-sm text-muted-foreground">
           {product.category === 'sieraden' ? 'Sieraden' : 'Telefoonhoesjes'}
         </p>
-        <h3 className="mt-1 font-medium">{product.title}</h3>
+        <h3 className="mt-2 text-base font-medium">{product.title}</h3>
         {product.description && (
-          <p className="mt-1 text-sm text-muted-foreground line-clamp-2">
+          <p className="mt-2 text-sm text-muted-foreground line-clamp-2">
             {product.description}
           </p>
         )}
-        <p className="mt-1 font-semibold">€{product.price.toFixed(2)}</p>
+        <p className="mt-4 text-lg font-semibold">€{product.price.toFixed(2)}</p>
         <Button 
-          className="mt-6 w-full rounded-lg bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 disabled:bg-muted"
+          className="mt-6 w-full"
           onClick={handleAddToCart}
           disabled={product.stock <= 0}
         >
