@@ -35,7 +35,7 @@ const Header = () => {
             </SheetContent>
           </Sheet>
           <a href="/" className="text-xl font-semibold">
-            <h1 className="font-playfair text-2xl">Handgemaakt</h1>
+            <h1 className="font-playfair text-2xl">Ro & Lo Studio</h1>
           </a>
           <nav className="hidden md:flex md:gap-6">
             <a href="#" className="nav-link">
