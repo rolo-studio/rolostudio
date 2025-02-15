@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
@@ -35,94 +34,8 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Header />
       
-      {/* Hero Section met luxe golven en gouden details */}
-      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden"
-        style={{
-          background: 'linear-gradient(135deg, rgba(255,245,242,1) 0%, rgba(254,235,228,1) 50%, rgba(255,228,218,1) 100%)'
-        }}
-      >
-        {/* Zachte golven overlay */}
-        <div 
-          className="absolute inset-0 opacity-30"
-          style={{
-            background: `
-              radial-gradient(circle at 20% 30%, rgba(255,242,238,0.6) 0%, transparent 70%),
-              radial-gradient(circle at 80% 70%, rgba(255,238,232,0.6) 0%, transparent 70%)
-            `
-          }}
-        />
-
-        {/* Gouden lijnen container */}
-        <div className="absolute inset-0 overflow-hidden">
-          {/* Bovenste lange golvende lijn */}
-          <div 
-            className="absolute w-[120%] h-[1px] opacity-40 left-[-10%]"
-            style={{
-              background: 'linear-gradient(90deg, transparent 0%, rgba(218,165,32,0.6) 20%, rgba(255,215,0,0.6) 50%, rgba(218,165,32,0.6) 80%, transparent 100%)',
-              top: '25%',
-              transform: 'rotate(-8deg) translateY(-50px)',
-              filter: 'blur(0.5px)'
-            }}
-          />
-
-          {/* Tweede golvende lijn */}
-          <div 
-            className="absolute w-[120%] h-[1px] opacity-35 left-[-10%]"
-            style={{
-              background: 'linear-gradient(90deg, transparent 0%, rgba(218,165,32,0.5) 20%, rgba(255,215,0,0.5) 50%, rgba(218,165,32,0.5) 80%, transparent 100%)',
-              top: '35%',
-              transform: 'rotate(4deg) translateY(20px)',
-              filter: 'blur(0.5px)'
-            }}
-          />
-
-          {/* Derde golvende lijn */}
-          <div 
-            className="absolute w-[120%] h-[1px] opacity-40 left-[-10%]"
-            style={{
-              background: 'linear-gradient(90deg, transparent 0%, rgba(218,165,32,0.6) 20%, rgba(255,215,0,0.6) 50%, rgba(218,165,32,0.6) 80%, transparent 100%)',
-              top: '45%',
-              transform: 'rotate(-6deg) translateY(40px)',
-              filter: 'blur(0.5px)'
-            }}
-          />
-
-          {/* Vierde golvende lijn */}
-          <div 
-            className="absolute w-[120%] h-[1px] opacity-35 left-[-10%]"
-            style={{
-              background: 'linear-gradient(90deg, transparent 0%, rgba(218,165,32,0.5) 20%, rgba(255,215,0,0.5) 50%, rgba(218,165,32,0.5) 80%, transparent 100%)',
-              top: '55%',
-              transform: 'rotate(5deg) translateY(-10px)',
-              filter: 'blur(0.5px)'
-            }}
-          />
-
-          {/* Vijfde golvende lijn */}
-          <div 
-            className="absolute w-[120%] h-[1px] opacity-40 left-[-10%]"
-            style={{
-              background: 'linear-gradient(90deg, transparent 0%, rgba(218,165,32,0.6) 20%, rgba(255,215,0,0.6) 50%, rgba(218,165,32,0.6) 80%, transparent 100%)',
-              top: '65%',
-              transform: 'rotate(-3deg) translateY(30px)',
-              filter: 'blur(0.5px)'
-            }}
-          />
-
-          {/* Subtiele gouden gloed */}
-          <div 
-            className="absolute inset-0 opacity-10"
-            style={{
-              background: `
-                radial-gradient(circle at 30% 20%, rgba(218,165,32,0.4) 0%, transparent 60%),
-                radial-gradient(circle at 70% 60%, rgba(255,215,0,0.4) 0%, transparent 60%),
-                radial-gradient(circle at 20% 80%, rgba(218,165,32,0.4) 0%, transparent 50%)
-              `,
-              filter: 'blur(40px)'
-            }}
-          />
-        </div>
-
+      {/* Hero Section */}
+      <section className="relative min-h-[60vh] flex items-center justify-center">
         <div className="container text-center relative z-10">
           <h1 className="animate-fade-in font-playfair text-4xl font-medium text-foreground sm:text-5xl md:text-6xl">
             Handgemaakte Schatten
