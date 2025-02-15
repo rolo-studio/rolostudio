@@ -6,6 +6,8 @@ import Index from "@/pages/Index";
 import Cart from "@/pages/Cart";
 import Auth from "@/pages/Auth";
 import Admin from "@/pages/Admin";
+import CreateProduct from "@/pages/CreateProduct";
+import EditProduct from "@/pages/EditProduct";
 import NotFound from "@/pages/NotFound";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { CartProvider } from "@/contexts/CartContext";
@@ -25,6 +27,8 @@ function App() {
               <Route path="/cart" element={<Cart />} />
               <Route path="/auth" element={<Auth />} />
               <Route path="/admin" element={<Admin />} />
+              <Route path="/admin/products/new" element={<CreateProduct />} />
+              <Route path="/admin/products/:id/edit" element={<EditProduct />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
             <Toaster />
