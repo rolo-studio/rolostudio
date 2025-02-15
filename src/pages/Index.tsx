@@ -1,5 +1,6 @@
 
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import ProductCard from "@/components/ProductCard";
 import { Product } from "@/types/database";
@@ -44,12 +45,18 @@ const Index = () => {
             Unieke sieraden en telefoonhoesjes, met liefde handgemaakt voor jou
           </p>
           <div className="mt-8 flex justify-center gap-4">
-            <a href="#sieraden" className="button-primary">
+            <Link 
+              to="/category/sieraden" 
+              className="button-primary"
+            >
               Bekijk Sieraden
-            </a>
-            <a href="#hoesjes" className="button-secondary">
+            </Link>
+            <Link 
+              to="/category/telefoonhoesjes" 
+              className="button-secondary"
+            >
               Bekijk Hoesjes
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -104,4 +111,3 @@ const Index = () => {
 };
 
 export default Index;
-
