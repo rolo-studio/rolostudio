@@ -17,7 +17,7 @@ const About = () => {
             </div>
             <h2 className="mb-2 text-xl font-semibold">Ons Team</h2>
             <p className="text-muted-foreground">
-              Wij zijn Ro & Lo, twee enthousiaste ondernemers met een passie voor handgemaakte sieraden en unieke telefoonhoesjes.
+              Sorry, ik zie geen nieuwe tekst in je bericht. Kun je aangeven welke tekst je hier wilt hebben?
             </p>
           </div>
 
