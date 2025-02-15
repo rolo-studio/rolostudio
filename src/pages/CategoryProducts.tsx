@@ -1,7 +1,6 @@
 
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { Grid } from "lucide-react";
 import Header from "@/components/Header";
 import ProductCard from "@/components/ProductCard";
 import { Button } from "@/components/ui/button";
@@ -54,17 +53,11 @@ const CategoryProducts = () => {
       <Header />
       
       <main className="container py-8">
-        <div className="mb-8 flex items-center justify-between">
-          <div>
-            <h1 className="font-playfair text-3xl font-medium">{categoryTitle}</h1>
-            <p className="mt-2 text-muted-foreground">
-              Ontdek onze collectie {categoryTitle.toLowerCase()}
-            </p>
-          </div>
-          <Button variant="outline" size="sm" className="gap-2">
-            <Grid className="h-4 w-4" />
-            <span>Weergave</span>
-          </Button>
+        <div className="mb-8">
+          <h1 className="font-playfair text-3xl font-medium">{categoryTitle}</h1>
+          <p className="mt-2 text-muted-foreground">
+            Ontdek onze collectie {categoryTitle.toLowerCase()}
+          </p>
         </div>
 
         {isLoading ? (
