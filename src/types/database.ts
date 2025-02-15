@@ -37,3 +37,10 @@ export interface OrderItem {
   price_at_time: number;
   created_at: string;
 }
+
+export interface AdminUser {
+  id: string;
+  user_id: string;
+  email: string;
+  created_at: string;
+}

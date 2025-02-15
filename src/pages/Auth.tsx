@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
@@ -13,6 +13,23 @@ const Auth = () => {
   const [isSignUp, setIsSignUp] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    const checkAdminStatus = async () => {
+      const { data: adminData } = await supabase
+        .from('admin_users')
+        .select('id')
+        .eq('email', email)
+        .single();
+      
+      setIsAdmin(!!adminData);
+    };
+
+    if (email) {
+      checkAdminStatus();
+    }
+  }, [email]);
 
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -58,9 +75,14 @@ const Auth = () => {
             </h1>
             <p className="mt-2 text-sm text-muted-foreground">
               {isSignUp
-                ? "Creëer een account om te winkelen"
-                : "Log in om door te gaan met winkelen"}
+                ? "Creëer een admin account"
+                : "Log in als administrator"}
             </p>
+            {isAdmin && (
+              <p className="mt-2 text-sm text-green-600">
+                Dit email adres heeft admin rechten
+              </p>
+            )}
           </div>
           <form onSubmit={handleAuth} className="space-y-4">
             <div className="space-y-2">
