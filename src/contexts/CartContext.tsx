@@ -3,7 +3,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { CartItem, Product } from "@/types/database";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
-import { v4 as uuidv4 } from '@supabase/supabase-js/dist/main/lib/helpers';
+import { v4 as uuidv4 } from 'uuid';
 
 interface CartContextType {
   cartItems: CartItem[];
