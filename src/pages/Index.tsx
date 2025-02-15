@@ -37,18 +37,46 @@ const Index = () => {
       
       {/* Hero Section with golden details */}
       <section className="relative flex min-h-[60vh] items-center justify-center bg-warmGray-50 overflow-hidden">
-        {/* Golden streamer detail */}
+        {/* Golden streamers detail */}
         <div className="absolute w-full h-full overflow-hidden pointer-events-none">
           <div 
             className="absolute top-1/4 left-0 w-full h-[2px] transform -rotate-6 opacity-20"
             style={{
               background: 'linear-gradient(90deg, transparent 0%, #DAA520 50%, transparent 100%)',
+              transform: 'rotate(-6deg) translateY(-10px) scale(0.95)',
+              borderRadius: '100%'
+            }}
+          />
+          <div 
+            className="absolute top-1/3 left-0 w-full h-[1px] transform rotate-3 opacity-15"
+            style={{
+              background: 'linear-gradient(90deg, transparent 0%, #FFD700 50%, transparent 100%)',
+              transform: 'rotate(4deg) translateY(5px) scale(1.05)',
+              borderRadius: '100%'
+            }}
+          />
+          <div 
+            className="absolute top-1/2 left-0 w-full h-[1.5px] transform -rotate-2 opacity-20"
+            style={{
+              background: 'linear-gradient(90deg, transparent 0%, #DAA520 50%, transparent 100%)',
+              transform: 'rotate(-3deg) translateY(0px) scale(0.98)',
+              borderRadius: '100%'
             }}
           />
           <div 
             className="absolute top-2/3 left-0 w-full h-[1px] transform rotate-3 opacity-10"
             style={{
               background: 'linear-gradient(90deg, transparent 0%, #FFD700 50%, transparent 100%)',
+              transform: 'rotate(2deg) translateY(-8px) scale(1.02)',
+              borderRadius: '100%'
+            }}
+          />
+          <div 
+            className="absolute top-3/4 left-0 w-full h-[1px] transform -rotate-4 opacity-15"
+            style={{
+              background: 'linear-gradient(90deg, transparent 0%, #DAA520 50%, transparent 100%)',
+              transform: 'rotate(-5deg) translateY(15px) scale(0.97)',
+              borderRadius: '100%'
             }}
           />
         </div>
