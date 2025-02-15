@@ -17,18 +17,31 @@ const Auth = () => {
 
   useEffect(() => {
     const checkAdminStatus = async () => {
-      const { data: adminData } = await supabase
-        .from('admin_users')
-        .select('id')
-        .eq('email', email)
-        .single();
-      
-      setIsAdmin(!!adminData);
+      try {
+        if (!email) return;
+        
+        const { data: adminData, error } = await supabase
+          .from('admin_users')
+          .select('id')
+          .eq('email', email)
+          .maybeSingle();
+        
+        if (error && error.code !== 'PGRST116') {
+          console.error('Error checking admin status:', error);
+          return;
+        }
+        
+        setIsAdmin(!!adminData);
+      } catch (error) {
+        console.error('Error in checkAdminStatus:', error);
+      }
     };
 
-    if (email) {
+    const debounceTimer = setTimeout(() => {
       checkAdminStatus();
-    }
+    }, 500); // Debounce the admin check by 500ms
+
+    return () => clearTimeout(debounceTimer);
   }, [email]);
 
   const handleAuth = async (e: React.FormEvent) => {
