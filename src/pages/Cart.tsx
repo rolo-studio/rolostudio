@@ -5,6 +5,7 @@ import { Minus, Plus, Trash2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Product } from "@/types/database";
 import { supabase } from "@/integrations/supabase/client";
+import CheckoutButton from "@/components/CheckoutButton";
 
 const Cart = () => {
   const { cartItems, removeFromCart, updateQuantity, isLoading } = useCart();
@@ -157,9 +158,7 @@ const Cart = () => {
                 </div>
               </div>
             </div>
-            <Button className="mt-4 w-full">
-              Afrekenen
-            </Button>
+            <CheckoutButton cartItems={cartItems} />
           </div>
         </div>
       </div>

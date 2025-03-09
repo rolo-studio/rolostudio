@@ -11,6 +11,7 @@ import EditProduct from "@/pages/EditProduct";
 import CategoryProducts from "@/pages/CategoryProducts";
 import About from "@/pages/About";
 import NotFound from "@/pages/NotFound";
+import Success from "@/pages/Success";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { CartProvider } from "@/contexts/CartContext";
 import "./App.css";
@@ -27,6 +28,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/cart" element={<Cart />} />
+              <Route path="/success" element={<Success />} />
               <Route path="/auth" element={<Auth />} />
               <Route path="/admin" element={<Admin />} />
               <Route path="/admin/products/new" element={<CreateProduct />} />
