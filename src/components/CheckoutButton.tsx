@@ -41,7 +41,8 @@ const CheckoutButton = ({ cartItems }: CheckoutButtonProps) => {
       });
 
       if (error) {
-        throw new Error(error.message || "Er is een fout opgetreden bij het aanmaken van de checkout sessie");
+        console.error("Edge function error:", error);
+        throw new Error("Er is een fout opgetreden bij het aanmaken van de checkout sessie");
       }
 
       if (!data?.url) {
@@ -54,7 +55,7 @@ const CheckoutButton = ({ cartItems }: CheckoutButtonProps) => {
       console.error("Checkout error:", error);
       toast({
         title: "Checkout fout",
-        description: error.message || "Er is een fout opgetreden tijdens het afrekenen",
+        description: error instanceof Error ? error.message : "Er is een fout opgetreden tijdens het afrekenen",
         variant: "destructive",
       });
     } finally {
