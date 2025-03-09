@@ -31,6 +31,12 @@ const CheckoutButton = ({ cartItems }: CheckoutButtonProps) => {
       const successUrl = `${window.location.origin}/success`;
       const cancelUrl = `${window.location.origin}/cart`;
 
+      console.log("Initiating checkout with:", { 
+        cartItems,
+        successUrl,
+        cancelUrl 
+      });
+
       // Call the Supabase Edge Function to create a checkout session
       const { data, error } = await supabase.functions.invoke("create-checkout-session", {
         body: {
@@ -46,9 +52,12 @@ const CheckoutButton = ({ cartItems }: CheckoutButtonProps) => {
       }
 
       if (!data?.url) {
+        console.error("No checkout URL received:", data);
         throw new Error("Geen checkout URL ontvangen");
       }
 
+      console.log("Redirecting to:", data.url);
+      
       // Redirect to Stripe Checkout
       window.location.href = data.url;
     } catch (error) {

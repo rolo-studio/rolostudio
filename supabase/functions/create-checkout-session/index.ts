@@ -29,6 +29,9 @@ serve(async (req) => {
   try {
     const { cartItems, successUrl, cancelUrl } = await req.json();
 
+    // Log request data for debugging
+    console.log("Request received:", { cartItems, successUrl, cancelUrl });
+
     // Validate the request
     if (!cartItems || !Array.isArray(cartItems) || cartItems.length === 0) {
       return new Response(
@@ -58,6 +61,8 @@ serve(async (req) => {
       );
     }
 
+    console.log("Products fetched:", products);
+
     // Create line items for Stripe
     const lineItems = cartItems.map(item => {
       const product = products.find(p => p.id === item.product_id);
@@ -79,19 +84,23 @@ serve(async (req) => {
       };
     });
 
+    console.log("Line items created:", lineItems);
+
     // Create Stripe checkout session
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: lineItems,
       mode: 'payment',
-      success_url: successUrl || 'https://your-domain.com/success',
-      cancel_url: cancelUrl || 'https://your-domain.com/cancel',
+      success_url: successUrl,
+      cancel_url: cancelUrl,
       shipping_address_collection: {
         allowed_countries: ['NL', 'BE', 'DE', 'FR'],
       },
     });
 
-    // Return the session ID
+    console.log("Checkout session created:", { id: session.id, url: session.url });
+
+    // Return the session ID and URL
     return new Response(
       JSON.stringify({ id: session.id, url: session.url }),
       { 
@@ -102,7 +111,7 @@ serve(async (req) => {
   } catch (error) {
     console.error("Error creating checkout session:", error);
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ error: error.message || "Unknown error occurred" }),
       { 
         status: 500,
         headers: { ...corsHeaders, "Content-Type": "application/json" }

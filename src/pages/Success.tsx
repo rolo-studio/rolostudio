@@ -1,17 +1,26 @@
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { CheckCircle } from "lucide-react";
+import { useCart } from "@/contexts/CartContext";
 
 const Success = () => {
   const navigate = useNavigate();
+  const { cartItems } = useCart();
+  const [isProcessing, setIsProcessing] = useState(true);
 
   useEffect(() => {
-    // You can implement additional logic here like:
-    // - Clearing the cart
-    // - Recording the order in the database
-    // - Sending a confirmation email
+    // This is where you would typically:
+    // 1. Verify the payment (usually done on the server)
+    // 2. Clear the cart (since the purchase is complete)
+    // 3. Store the order in your database
+    
+    const timer = setTimeout(() => {
+      setIsProcessing(false);
+    }, 1500);
+    
+    return () => clearTimeout(timer);
   }, []);
 
   return (
