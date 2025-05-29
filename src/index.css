@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
 
 @tailwind base;
@@ -46,7 +45,7 @@
   body {
     @apply text-foreground;
     font-family: 'Inter', sans-serif;
-    background-color: #fdf2f8; /* Roze achtergrond */
+    background-color: white; /* Witte achtergrond */
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Playfair Display', serif;
