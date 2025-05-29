@@ -1,4 +1,3 @@
-
 import { ShoppingCart, Menu } from "lucide-react";
 import { Button } from "./ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
@@ -46,7 +45,7 @@ const Header = () => {
             </SheetContent>
           </Sheet>
           <Link to="/" className="text-xl font-semibold">
-            <h1 className="font-playfair text-2xl bg-gradient-to-r from-amber-600 to-amber-500 bg-clip-text text-transparent">Ro & Lo Studio</h1>
+            <h1 className="font-playfair text-2xl text-black">Ro & Lo Studio</h1>
           </Link>
           <nav className="hidden md:flex md:gap-6">
             <Link to="/category/sieraden" className="nav-link">
