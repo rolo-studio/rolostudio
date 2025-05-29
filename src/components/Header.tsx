@@ -10,7 +10,7 @@ const Header = () => {
   const navigate = useNavigate();
 
   return (
-    <header className="sticky top-0 z-50 border-b border-pink-200 bg-background/80 backdrop-blur-sm">
+    <header className="sticky top-0 z-50 border-b border-green-200 bg-background/80 backdrop-blur-sm">
       <div className="container flex h-16 items-center justify-between">
         <div className="flex items-center gap-6">
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -19,7 +19,7 @@ const Header = () => {
                 <Menu className="h-6 w-6" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="left" className="border-r border-pink-200">
+            <SheetContent side="left" className="border-r border-green-200">
               <nav className="flex flex-col gap-4">
                 <Link
                   to="/category/sieraden"
@@ -65,7 +65,7 @@ const Header = () => {
             variant="ghost" 
             size="icon"
             onClick={() => navigate('/cart')}
-            className="hover:text-pink-600"
+            className="hover:text-green-600"
           >
             <ShoppingCart className="h-6 w-6" />
           </Button>
