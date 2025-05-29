@@ -1,3 +1,4 @@
+
 import { ShoppingCart, Menu } from "lucide-react";
 import { Button } from "./ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
@@ -35,6 +36,13 @@ const Header = () => {
                   Telefoonhoesjes
                 </Link>
                 <Link
+                  to="/favorites"
+                  className="nav-link"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Favorieten
+                </Link>
+                <Link
                   to="/about"
                   className="nav-link"
                   onClick={() => setIsOpen(false)}
@@ -53,6 +61,9 @@ const Header = () => {
             </Link>
             <Link to="/category/telefoonhoesjes" className="nav-link">
               Telefoonhoesjes
+            </Link>
+            <Link to="/favorites" className="nav-link">
+              Favorieten
             </Link>
             <Link to="/about" className="nav-link">
               Over ons

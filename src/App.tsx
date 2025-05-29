@@ -10,6 +10,7 @@ import CreateProduct from "@/pages/CreateProduct";
 import EditProduct from "@/pages/EditProduct";
 import CategoryProducts from "@/pages/CategoryProducts";
 import About from "@/pages/About";
+import Favorites from "@/pages/Favorites";
 import NotFound from "@/pages/NotFound";
 import Success from "@/pages/Success";
 import { AuthProvider } from "@/contexts/AuthContext";
@@ -35,6 +36,7 @@ function App() {
               <Route path="/admin/products/:id/edit" element={<EditProduct />} />
               <Route path="/category/:category" element={<CategoryProducts />} />
               <Route path="/about" element={<About />} />
+              <Route path="/favorites" element={<Favorites />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
             <Toaster />
