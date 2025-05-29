@@ -56,7 +56,7 @@ const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) => {
             <Button
               variant="ghost"
               size="icon"
-              className={`absolute right-2 top-2 bg-white/80 transition-opacity hover:text-green-600 ${
+              className={`absolute right-2 top-2 bg-white/80 transition-opacity hover:text-pink-600 ${
                 isHovering ? "opacity-100" : "opacity-0"
               }`}
             >
@@ -74,7 +74,7 @@ const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) => {
           {/* Product Details */}
           <div className="flex flex-col justify-between">
             <div>
-              <p className="text-sm text-green-700 mb-2">
+              <p className="text-sm text-pink-700 mb-2">
                 {product.category === 'sieraden' ? 'Sieraden' : 'Telefoonhoesjes'}
               </p>
               
@@ -102,7 +102,7 @@ const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) => {
             
             <div className="space-y-3">
               <Button 
-                className="w-full bg-green-100 text-green-900 hover:bg-green-200 border border-green-200"
+                className="w-full bg-pink-100 text-pink-900 hover:bg-pink-200 border border-pink-200"
                 onClick={handleAddToCart}
                 disabled={product.stock <= 0}
                 size="lg"
@@ -112,7 +112,7 @@ const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) => {
               
               <Button 
                 variant="outline" 
-                className="w-full border-green-200 text-green-700 hover:bg-green-50"
+                className="w-full border-pink-200 text-pink-700 hover:bg-pink-50"
                 onClick={onClose}
                 size="lg"
               >
