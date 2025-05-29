@@ -1,10 +1,11 @@
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "./ui/dialog";
 import { Button } from "./ui/button";
-import { Heart, X } from "lucide-react";
+import { Heart } from "lucide-react";
 import { Product } from "@/types/database";
 import { useCart } from "@/contexts/CartContext";
 import { useToast } from "@/hooks/use-toast";
+import { useLikes } from "@/hooks/useLikes";
 import { useState } from "react";
 
 interface ProductModalProps {
@@ -16,6 +17,7 @@ interface ProductModalProps {
 const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) => {
   const { toast } = useToast();
   const { addToCart } = useCart();
+  const { toggleLike, isLiked } = useLikes();
   const [isHovering, setIsHovering] = useState(false);
 
   if (!product) return null;
@@ -33,6 +35,19 @@ const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) => {
     await addToCart(product);
     onClose();
   };
+
+  const handleLike = () => {
+    toggleLike(product.id);
+    
+    toast({
+      title: isLiked(product.id) ? "Verwijderd uit favorieten" : "Toegevoegd aan favorieten",
+      description: isLiked(product.id) 
+        ? "Dit product is verwijderd uit je favorieten."
+        : "Dit product is toegevoegd aan je favorieten.",
+    });
+  };
+
+  const productIsLiked = isLiked(product.id);
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -56,11 +71,12 @@ const ProductModal = ({ product, isOpen, onClose }: ProductModalProps) => {
             <Button
               variant="ghost"
               size="icon"
-              className={`absolute right-2 top-2 bg-white/80 transition-opacity hover:text-pink-600 ${
-                isHovering ? "opacity-100" : "opacity-0"
-              }`}
+              className={`absolute right-2 top-2 bg-white/80 transition-all ${
+                isHovering || productIsLiked ? "opacity-100" : "opacity-0"
+              } ${productIsLiked ? "text-pink-600" : "hover:text-pink-600"}`}
+              onClick={handleLike}
             >
-              <Heart className="h-5 w-5" />
+              <Heart className={`h-5 w-5 ${productIsLiked ? "fill-current" : ""}`} />
             </Button>
             {product.stock <= 0 && (
               <div className="absolute inset-0 flex items-center justify-center bg-black/50">

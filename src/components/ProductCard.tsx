@@ -5,6 +5,7 @@ import { Button } from "./ui/button";
 import { Product } from "@/types/database";
 import { useToast } from "@/hooks/use-toast";
 import { useCart } from "@/contexts/CartContext";
+import { useLikes } from "@/hooks/useLikes";
 import ProductModal from "./ProductModal";
 
 interface ProductCardProps {
@@ -14,6 +15,7 @@ interface ProductCardProps {
 const ProductCard = ({ product }: ProductCardProps) => {
   const { toast } = useToast();
   const { addToCart } = useCart();
+  const { toggleLike, isLiked } = useLikes();
   const [isHovering, setIsHovering] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -32,9 +34,23 @@ const ProductCard = ({ product }: ProductCardProps) => {
     await addToCart(product);
   };
 
+  const handleLike = (e: React.MouseEvent) => {
+    e.stopPropagation(); // Prevent opening modal when clicking like
+    toggleLike(product.id);
+    
+    toast({
+      title: isLiked(product.id) ? "Verwijderd uit favorieten" : "Toegevoegd aan favorieten",
+      description: isLiked(product.id) 
+        ? "Dit product is verwijderd uit je favorieten."
+        : "Dit product is toegevoegd aan je favorieten.",
+    });
+  };
+
   const handleCardClick = () => {
     setIsModalOpen(true);
   };
+
+  const productIsLiked = isLiked(product.id);
 
   return (
     <>
@@ -54,12 +70,12 @@ const ProductCard = ({ product }: ProductCardProps) => {
           <Button
             variant="ghost"
             size="icon"
-            className={`absolute right-2 top-2 bg-white/80 transition-opacity hover:text-pink-600 ${
-              isHovering ? "opacity-100" : "opacity-0"
-            }`}
-            onClick={(e) => e.stopPropagation()}
+            className={`absolute right-2 top-2 bg-white/80 transition-all ${
+              isHovering || productIsLiked ? "opacity-100" : "opacity-0"
+            } ${productIsLiked ? "text-pink-600" : "hover:text-pink-600"}`}
+            onClick={handleLike}
           >
-            <Heart className="h-5 w-5" />
+            <Heart className={`h-5 w-5 ${productIsLiked ? "fill-current" : ""}`} />
           </Button>
           {product.stock <= 0 && (
             <div className="absolute inset-0 flex items-center justify-center bg-black/50">
