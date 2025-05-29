@@ -54,7 +54,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
           <Button
             variant="ghost"
             size="icon"
-            className={`absolute right-2 top-2 bg-white/80 transition-opacity hover:text-amber-600 ${
+            className={`absolute right-2 top-2 bg-white/80 transition-opacity hover:text-pink-600 ${
               isHovering ? "opacity-100" : "opacity-0"
             }`}
             onClick={(e) => e.stopPropagation()}
@@ -70,7 +70,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
           )}
         </div>
         <div className="p-4">
-          <p className="text-sm text-amber-700">
+          <p className="text-sm text-pink-700">
             {product.category === 'sieraden' ? 'Sieraden' : 'Telefoonhoesjes'}
           </p>
           <h3 className="mt-2 font-medium">{product.title}</h3>
@@ -79,9 +79,9 @@ const ProductCard = ({ product }: ProductCardProps) => {
               {product.description}
             </p>
           )}
-          <p className="mt-3 text-base font-semibold text-amber-800">€{product.price.toFixed(2)}</p>
+          <p className="mt-3 text-base font-semibold text-pink-800">€{product.price.toFixed(2)}</p>
           <Button 
-            className="mt-4 w-full bg-amber-100 text-amber-900 hover:bg-amber-200 border border-amber-200"
+            className="mt-4 w-full bg-pink-100 text-pink-900 hover:bg-pink-200 border border-pink-200"
             onClick={handleAddToCart}
             disabled={product.stock <= 0}
           >
